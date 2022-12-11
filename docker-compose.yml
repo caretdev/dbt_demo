@@ -1,0 +1,9 @@
+version: '3'
+services:
+  iris:
+    ports:
+      - 9001:1972
+      - 9002:52773
+    command:
+      - -a
+      - iris session iris -U %SYS '##class(Security.Users).UnExpireUserPasswords("*")'

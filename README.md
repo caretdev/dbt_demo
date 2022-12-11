@@ -23,17 +23,42 @@ The raw data consists of customers, orders, and payments, with the following ent
 
 
 ### Running this project
+
 To get up and running with this project:
+
 1. Install dbt using [these instructions](https://docs.getdbt.com/docs/installation).
+2. Install dbt-iris adaptor
+
+```shell
+pip install dbt-core==1.3.1 dbt-iris==1.3.1
+```
 
 2. Clone this repository.
 
 3. Change into the `jaffle_shop` directory from the command line:
-```bash
-$ cd jaffle_shop
+```shell
+cd jaffle_shop
 ```
 
-4. Set up a profile called `jaffle_shop` to connect to a data warehouse by following [these instructions](https://docs.getdbt.com/docs/configure-your-profile). If you have access to a data warehouse, you can use those credentials – we recommend setting your [target schema](https://docs.getdbt.com/docs/configure-your-profile#section-populating-your-profile) to be a new schema (dbt will create the schema for you, as long as you have the right privileges). If you don't have access to an existing data warehouse, you can also setup a local postgres database and connect to it in your profile.
+4. Set up a profile called `jaffle_shop` to connect to a data warehouse by following [these instructions](https://docs.getdbt.com/docs/configure-your-profile). If you have access to a data warehouse, you can use those credentials – we recommend setting your [target schema](https://docs.getdbt.com/docs/configure-your-profile#section-populating-your-profile) to be a new schema (dbt will create the schema for you, as long as you have the right privileges). If you don't have access to an existing data warehouse, you can also setup a local IRIS database and connect to it in your profile.
+
+The example of profile file
+
+```yml
+jaffle_shop:
+  outputs:
+    iris:
+      type: iris
+      threads: 1
+      host: localhost
+      port: 9001
+      user: _SYSTEM
+      pass: SYS
+      namespace: USER
+      schema: dbt
+
+  target: iris
+```
 
 5. Ensure your profile is setup correctly from the command line:
 ```bash
