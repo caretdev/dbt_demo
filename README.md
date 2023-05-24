@@ -30,7 +30,7 @@ To get up and running with this project:
 2. Install dbt-iris adaptor
 
 ```shell
-pip install dbt-core==1.3.1 dbt-iris==1.3.1
+pip install dbt-core^=1.3.1 dbt-iris^=1.3.1
 ```
 
 2. Clone this repository.
